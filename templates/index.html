@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaman</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Adjust height as needed */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            margin-top: 20px; /* Adjust margin as needed */
+        }
+        #flower_image {
+            margin-top: 20px; /* Adjust margin as needed */
+        }
+    </style>
+</head>
+<body>
+    <h1>Chaman</h1>
+    <div class="container">
+        <div id="flower_image"></div>
+        <p id="message"></p>
+        <button id="flower_button" onclick="getFlower()">Sir G click karen</button>
+    </div>
+
+    <script>
+        function getFlower() {
+            fetch('/flower')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('flower_image').innerHTML = `<img src="${data.flower_image}" alt="Flower">`;
+                document.getElementById('message').innerText = data.message;
+                document.getElementById('flower_button').style.display = 'none';  // Hide the button
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
