@@ -1,7 +1,8 @@
-from flask import Flask, send_from_directory
-import os
+from flask import Flask
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # This will enable CORS for all routes
 
 @app.route('/')
 def read_file():
